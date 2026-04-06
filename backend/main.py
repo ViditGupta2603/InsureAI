@@ -4,7 +4,7 @@ import numpy as np
 
 app = FastAPI()
 
-# Load model
+# Model load
 model = pickle.load(open("model.pkl", "rb"))
 
 @app.get("/")
@@ -13,10 +13,11 @@ def home():
 
 @app.post("/predict")
 def predict(age: int, bmi: float, children: int):
-    # Input ko array me convert karo
+
+    # Fast input (numpy)
     data = np.array([[age, bmi, children]])
-    
+
     # Prediction
     result = model.predict(data)
-    
+
     return {"predicted_cost": float(result[0])}

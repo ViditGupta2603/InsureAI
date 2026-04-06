@@ -1,24 +1,17 @@
 import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import LabelEncoder
+from sklearn.linear_model import LinearRegression
 import pickle
 
-# Dataset load (online)
+# Dataset load (ONLINE)
 url = "https://raw.githubusercontent.com/stedy/Machine-Learning-with-R-datasets/master/insurance.csv"
 df = pd.read_csv(url)
 
-# Encoding
-le = LabelEncoder()
-df['sex'] = le.fit_transform(df['sex'])
-df['smoker'] = le.fit_transform(df['smoker'])
-df['region'] = le.fit_transform(df['region'])
-
-# Split
-X = df.drop('charges', axis=1)
+# Sirf required columns lo (IMPORTANT)
+X = df[['age', 'bmi', 'children']]
 y = df['charges']
 
-# Model train
-model = RandomForestRegressor()
+# Fast model
+model = LinearRegression()
 model.fit(X, y)
 
 # Save model

@@ -7,19 +7,18 @@
 
 <link rel="stylesheet" href="style.css">
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
 
 <div class="app">
-
     <div class="card">
+
         <h1>🚀 InsureAI</h1>
         <p class="subtitle">Smart Insurance Cost Predictor</p>
 
+        <!-- FORM -->
         <div class="form">
             <input id="age" type="number" placeholder="Enter Age">
             <input id="bmi" type="number" placeholder="Enter BMI">
@@ -28,13 +27,16 @@
             <button onclick="predict()">Predict Cost</button>
         </div>
 
-        <div class="loader" id="loader"></div>
+        <!-- LOADER -->
+        <div id="loader" style="display:none;">Loading...</div>
 
-        <div class="result" id="result"></div>
-        <div class="error" id="error"></div>
+        <!-- RESULT -->
+        <div id="result"></div>
+
+        <!-- ERROR -->
+        <div id="error" style="color:red;"></div>
 
     </div>
-
 </div>
 
 <script src="script.js"></script>

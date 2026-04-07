@@ -1,23 +1,35 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import pickle
 import numpy as np
 
 app = FastAPI()
 
-# Model load
+# ✅ CORS FIX (IMPORTANT)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ✅ Load model
 model = pickle.load(open("model.pkl", "rb"))
 
+# ✅ Home route
 @app.get("/")
 def home():
-    return {"message": "Insurance Prediction API Running 🚀"}
+    return {"message": "InsureAI API Running 🚀"}
 
+# ✅ Prediction route
 @app.post("/predict")
 def predict(age: int, bmi: float, children: int):
 
-    # Fast input (numpy)
     data = np.array([[age, bmi, children]])
 
-    # Prediction
     result = model.predict(data)
 
-    return {"predicted_cost": float(result[0])}
+    return {
+        "predicted_cost": float(result[0])
+    }

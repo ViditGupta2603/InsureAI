@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InsureAI</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="card">
+        <h1>🚀 InsureAI</h1>
+        <p class="subtitle">Smart Insurance Cost Predictor</p>
+
+        <div class="form">
+            <input id="age" type="number" placeholder="Enter Age">
+            <input id="bmi" type="number" placeholder="Enter BMI">
+            <input id="children" type="number" placeholder="Children">
+
+            <button onclick="predict()">Predict Cost</button>
+        </div>
+
+        <div class="loader" id="loader"></div>
+
+        <div class="result" id="result"></div>
+        <div class="error" id="error"></div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

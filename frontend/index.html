@@ -7,12 +7,15 @@
 
 <link rel="stylesheet" href="style.css">
 
+<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
 <div class="app">
+
     <div class="card">
 
         <h1>🚀 InsureAI</h1>
@@ -28,17 +31,37 @@
         </div>
 
         <!-- LOADER -->
-        <div id="loader" style="display:none;">Loading...</div>
+        <div class="loader" id="loader"></div>
 
         <!-- RESULT -->
-        <div id="result"></div>
+        <div class="result" id="result"></div>
 
         <!-- ERROR -->
-        <div id="error" style="color:red;"></div>
+        <div class="error" id="error"></div>
+
+        <!-- THEME TOGGLE -->
+        <button id="themeToggle">🌙 Toggle Theme</button>
+
+        <!-- HISTORY -->
+        <div class="history">
+            <h3>Previous Predictions</h3>
+            <ul id="historyList"></ul>
+        </div>
+
+        <!-- CHART -->
+        <canvas id="chart" height="200"></canvas>
+
+        <!-- TOAST -->
+        <div id="toast"></div>
 
     </div>
+
 </div>
 
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JS -->
 <script src="script.js"></script>
 
 </body>

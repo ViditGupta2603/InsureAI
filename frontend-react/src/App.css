@@ -1,0 +1,85 @@
+/* App.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  margin: 0 0 10px;
+  color: #333;
+  font-size: 24px;
+}
+
+p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box; /* padding se width kharab nahi hogi */
+  outline: none;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #667eea;
+}
+
+button {
+  padding: 12px;
+  width: 100%;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #5a6fd6;
+}
+
+button:disabled {
+  background: #aab7f1;
+  cursor: not-allowed;
+}
+
+h2 {
+  margin-top: 25px;
+  color: #2d3748;
+  font-size: 1.2rem;
+  background: #f7fafc;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px dashed #667eea;
+}

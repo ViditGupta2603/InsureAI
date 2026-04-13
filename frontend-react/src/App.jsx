@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 
 export default function App() {
@@ -7,14 +7,17 @@ export default function App() {
   const [children, setChildren] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [history, setHistory] = useState([]);
 
   const predict = async () => {
     if (!age || !bmi || !children) {
-      alert("⚠️ Please fill all fields");
+      setError("⚠️ Fill all fields");
       return;
     }
 
     setLoading(true);
+    setError("");
     setResult("");
 
     try {
@@ -23,15 +26,19 @@ export default function App() {
         { method: "POST" }
       );
 
-      if (!res.ok) throw new Error("Server Error");
-
       const data = await res.json();
-      setResult(`💰 ₹ ${data.predicted_cost.toFixed(2)}`);
-    } catch (error) {
-      setResult("❌ Error connecting to backend");
-    } finally {
-      setLoading(false);
+      const cost = data.predicted_cost.toFixed(2);
+
+      setResult(`💰 ₹ ${cost}`);
+
+      // add to history
+      setHistory((prev) => [cost, ...prev]);
+
+    } catch {
+      setError("❌ API Error");
     }
+
+    setLoading(false);
   };
 
   return (
@@ -40,32 +47,41 @@ export default function App() {
         <h1>🚀 InsureAI</h1>
         <p>Smart Insurance Predictor</p>
 
-        <div className="input-group">
-          <input
-            type="number"
-            placeholder="Enter Age"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Enter BMI"
-            value={bmi}
-            onChange={(e) => setBmi(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Number of Children"
-            value={children}
-            onChange={(e) => setChildren(e.target.value)}
-          />
-        </div>
+        <input
+          type="number"
+          placeholder="Enter Age"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+        />
 
-        <button onClick={predict} disabled={loading}>
-          {loading ? "Processing..." : "Predict Cost"}
+        <input
+          type="number"
+          placeholder="Enter BMI"
+          value={bmi}
+          onChange={(e) => setBmi(e.target.value)}
+        />
+
+        <input
+          type="number"
+          placeholder="Children"
+          value={children}
+          onChange={(e) => setChildren(e.target.value)}
+        />
+
+        <button onClick={predict}>
+          {loading ? "Loading..." : "Predict Cost"}
         </button>
 
-        {result && <h2 className="result-display">{result}</h2>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
+        {result && <h2>{result}</h2>}
+
+        <h3>Prediction History</h3>
+        <ul>
+          {history.map((item, index) => (
+            <li key={index}>₹ {item}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
